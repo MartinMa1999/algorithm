@@ -34,4 +34,29 @@ public class ZigzagConversion {
         }
         return sb.toString();
     }
+
+    public String myWay(String s, int numRows) { // my own way
+        if(numRows == 1){
+            return s;
+        }
+        StringBuilder sb = new StringBuilder();
+        int n = 2 * numRows - 2;
+        for(int i = 0;  i < numRows; i++){
+            if(i == 0 || i == numRows - 1){
+                for(int j = i; j < s.length(); j += n){
+                    sb.append(s.charAt(j));
+                }
+            }
+            else{
+                for(int j = i; j < s.length(); j += n){
+                    sb.append(s.charAt(j));
+                    if(j + n - 2 * i < s.length()){
+                        sb.append(s.charAt(j + n - 2 * i));
+                    }
+                }
+            }
+        }
+
+        return sb.toString();
+    }
 }

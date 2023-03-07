@@ -4,7 +4,7 @@ public class LongestValidParentheses {
     // Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
 
     //valid的标志就是左右括号数量相等。但是如果只遍历从左到右，当左括号比右括号多的时候就会出问题，因此为了避免这种情况，再从右到左遍历一次
-    //也可以用stack存左括号的index，每次抵消一个左括号，当前index差表示这一段之内都是valid
+    //也可以用stack始终保持栈底元素为当前已经遍历过的元素中「最后一个没有被匹配的右括号的下标」，这样的做法主要是考虑了边界条件的处理，栈里其他元素维护左括号的下标
     public int longestValidParentheses(String input) {
         if(input == null || input.length() == 0){
             return 0;

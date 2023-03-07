@@ -1,5 +1,6 @@
 package crossTrainingDIY;
 
+
 public class ReplacementsOfAAndB {
     // Given a string with only character 'a' and 'b', replace some characters such that
     // the string becomes in the forms of all the 'b's are on the right side of all the 'a's.

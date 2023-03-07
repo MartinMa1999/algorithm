@@ -38,4 +38,40 @@ public class LongestPalindromicSubstring {
         }
         return result;
     }
+
+    public String betterDPWay(String input) {
+        if(input == null || input.length() <= 1){
+            return input;
+        }
+        int start = 0;
+        int end = 0;
+        int max = 0;
+        int[][] helper = new int[input.length()][input.length()];
+        for(int j = 0; j < helper[0].length; j++){
+            for(int i = j; i >= 0; i--){
+                if(i == j){
+                    helper[i][j] = 1;
+                }
+                else{
+                    boolean b = input.charAt(i) == input.charAt(j);
+                    if(j - i == 1){
+                        if(b){
+                            helper[i][j] = 2;
+                        }
+                    }
+                    else{
+                        if(helper[i + 1][j - 1] > 0 && b){
+                            helper[i][j] = helper[i + 1][j - 1] + 2;
+                        }
+                    }
+                    if(helper[i][j] > max){
+                        max = helper[i][j];
+                        start = i;
+                        end = j;
+                    }
+                }
+            }
+        }
+        return input.substring(start, end + 1);
+    }
 }

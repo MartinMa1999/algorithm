@@ -2,7 +2,7 @@ package leetCode;
 
 import java.util.*;
 
-public class FindClosestNodeToGivenTwoNodes {
+public class FindClosestNodeToGivenTwoNodes { // 2360
     public static void main(String[] args) {
         FindClosestNodeToGivenTwoNodes test = new FindClosestNodeToGivenTwoNodes();
         test.closestMeetingNode(new int[]{4,4,8,-1,9,8,4,4,1,1}, 5, 6);
@@ -66,6 +66,33 @@ public class FindClosestNodeToGivenTwoNodes {
             if(result != -1){
                 break;
             }
+        }
+
+        return result;
+    }
+
+    public int theBest(int[] edges, int node1, int node2) { // 相当于先把所有点的距离直接写出来，然后再traverse所有的点并且比较距离。但是其实最好的办法是一边遍历一边找，效率最高，但是while loop的条件不好设置
+        int[] array1 = findAll(edges, node1);
+        int[] array2 = findAll(edges, node2);
+        int result = -1;
+        int distance = edges.length;
+        for(int i = 0; i < edges.length; i++){
+            int tmp = Math.max(array1[i], array2[i]);
+            if(tmp < distance){
+                distance = tmp;
+                result = i;
+            }
+        }
+
+        return result;
+    }
+
+    private int[] findAll(int[] edges, int node){
+        int n = edges.length;
+        int[] result = new int[n];
+        Arrays.fill(result, n);
+        for(int i = 0; node >= 0 && result[node] == n; node = edges[node]){
+            result[node] = i++;
         }
 
         return result;
